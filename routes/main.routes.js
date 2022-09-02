@@ -6,4 +6,6 @@ router.get('/', mainController.mainTest);
 
 router.get('/test', mainController.modelTest);
 
+router.post('/test', mainController.addTest);
+
 module.exports = router;
