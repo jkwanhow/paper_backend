@@ -8,4 +8,6 @@ router.get('/test', mainController.modelTest);
 
 router.post('/test', mainController.addTest);
 
+router.get('/receipts', mainController.getReceipts);
+
 module.exports = router;

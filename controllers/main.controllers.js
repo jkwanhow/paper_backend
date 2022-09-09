@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 const Test = require('../models/test');
+const Receipt = require('../models/receipt');
 
 const mainTest = (req, res) => {
     res.send("Backend is running and visible on the browser, nice");
@@ -28,8 +29,15 @@ const addTest = (req, res) => {
         console.log(test.name + " saved info");
 
     });
-    res.send('recieved request');
-}
+    res.send('received request');
+};
+
+const getReceipts = (req, res) => {
+    Receipt.find( {}, (error, items) => {
+        if(error) console.log(error);
+        res.send(items);
+    });
+};
 
 module.exports = {mainTest,
     modelTest,
