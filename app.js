@@ -19,6 +19,8 @@ const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 // -------------------------
+app.use(require('body-parser').urlencoded({ extended: false }));
+
 const port = 8080;
 
 var mainRouter = require('./routes/main.routes');

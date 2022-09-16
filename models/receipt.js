@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 const ReceiptSchema = new Schema(
   {
-    userID: {type: ObjectId},
+    userID: {type: mongoose.Schema.Types.ObjectId},
     shopName: {type: String, required: true, maxLength: 100},
     shopAddress: {type: String},
     shoppingCentreAddress: {type: String},
