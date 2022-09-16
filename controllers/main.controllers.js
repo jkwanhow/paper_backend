@@ -69,7 +69,6 @@ const validateLogin = (req, res) => {
             return;
         }
 
-        console.log(data)
         hash = data.password;
         bcrypt.compare(req.body.password, hash, function(error, isMatch){
             if (error) {
