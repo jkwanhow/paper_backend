@@ -4,6 +4,10 @@ const Receipt = require('../models/receipt');
 
 const bcrypt = require('bcryptjs');
 const User = require('../models/user');
+const passport = require('passport');
+const initializePassport = require('../scripts/passportScritps');
+
+initializePassport(passport);
 
 const createUser = (req, res) => {
     data = req.body;
@@ -60,6 +64,7 @@ const getReceipts = (req, res) => {
     });
 };
 
+/*
 const validateLogin = (req, res) => {
     User.findOne({email: req.body.email}, (error, data) => {
         if(error) console.log(error)
@@ -76,13 +81,19 @@ const validateLogin = (req, res) => {
             } else if(!isMatch){
                 res.send('wrong password');
             }else{
-                res.send('password correct!');
+                res.send({id:data.id_, email: data.email});
             }
         })
     })
 
 
 }
+*/
+const validateLogin = passport.authenticate('local', {
+    successRedirect: '/',
+    failureRedirect: '/',
+    failureFlash: false,
+});
 
 module.exports = {mainTest,
     modelTest,

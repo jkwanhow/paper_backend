@@ -1,5 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
+
+const session = require('express-session');
+const passport = require('passport');
 require('dotenv').config();
 
 const env_variables = process.env;
@@ -10,6 +13,20 @@ const env_variables = process.env;
 //------- Host backend ----
 
 const app = express();
+
+// ---- session ----
+// information can be found on `https://github.com/expressjs/session#compatible-session-stores`
+app.use(session({
+    secret: '514v3k41ib4n', //secret used to sign session/token
+    resave: false, //resave forces session to be saved back to the session store. even if not modified
+    saveUninitialized: false, //forces a uninitialised session to be saved to the store.
+    //Session is unintialised when it is new, but not modified
+    cookie: { secure: false}, //when true, compliant clients will not send back unless https,
+    //set secure true once https is set up!
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 // ---- Database -----
 const uri = `mongodb+srv://${env_variables.DB_username}:${env_variables.DB_password}@${env_variables.DB_domain}`;

@@ -8,10 +8,19 @@ router.post('/validate', mainController.validateLogin);
 
 router.get('/', mainController.mainTest);
 
-router.get('/test', mainController.modelTest);
+router.get('/test', checkAuthenticated, mainController.modelTest);
 
 router.post('/test', mainController.addTest);
 
 router.get('/receipts', mainController.getReceipts);
+
+
+function checkAuthenticated(req, res, next) {
+    if(req.isAuthenticated()) {
+        return next();
+    }
+
+    res.send('not authenticated');
+}
 
 module.exports = router;
