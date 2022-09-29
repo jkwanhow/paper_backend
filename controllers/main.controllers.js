@@ -57,12 +57,7 @@ const addTest = (req, res) => {
     res.send('received request');
 };
 
-const getReceipts = (req, res) => {
-    Receipt.find( {}, (error, items) => {
-        if(error) console.log(error);
-        res.send(items);
-    });
-};
+
 
 /*
 const validateLogin = (req, res) => {
@@ -95,10 +90,10 @@ const validateLogin = passport.authenticate('local', {
     failureFlash: false,
 });
 
-module.exports = {mainTest,
+module.exports = {
+    mainTest,
     modelTest,
     addTest,
     createUser,
-    getReceipts,
     validateLogin,
 }

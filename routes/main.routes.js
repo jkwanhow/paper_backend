@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const mainController = require('../controllers/main.controllers');
+const receiptController = require('../controllers/receipt.controllers');
+const userController = require('../controllers/user.controllers');
 
 router.put('/user', mainController.createUser);
 
@@ -12,7 +14,9 @@ router.get('/test', checkAuthenticated, mainController.modelTest);
 
 router.post('/test', mainController.addTest);
 
-router.get('/receipts', mainController.getReceipts);
+router.get('/receipts', receiptController.getReceipts);
+
+router.get('/stats', userController.getStatistics);
 
 
 function checkAuthenticated(req, res, next) {
