@@ -12,24 +12,20 @@ const getReceipts = (req, res) => {
 };
 
 const createReceipt = (req, res) => {
-  const uid = req.user.id;
-  const shop = req.query.shop;
-  const add1 = req.query.shopAddress;
-  const add2 = req.query.centreAddress;
-  const ABN1 = req.query.ABN;
-  const mobile = req.query.phone;
 
   var receipt = new Receipt({
-    userID: uid,
-    shopName: shop,
-    shopAddress: add1,
-    shopCentreAddress: add2,
-    ABN: ABN1,
-    phone: mobile,
+    userID: req.user.id,
+    shopName: req.body.shop,
+    shopAddress: req.body.shopAddress,
+    shopCentreAddress: req.body.centreAddress,
+    ABN: req.body.ABN,
+    phone: req.body.phone,
     time: new Date(),
     itemsPurchased: [],
     cashClaimed: false
   });
+
+  console.log(receipt);
 
   /*itemsPurchased: [{
     itemName: {type: String, maxLength: 100},
@@ -45,6 +41,7 @@ const createReceipt = (req, res) => {
           'redir': '/'
       });
     }
+    res.send("Receipt posted");
   })
 };
 

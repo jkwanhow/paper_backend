@@ -9,7 +9,7 @@ const ReceiptSchema = new Schema(
     shopAddress: {type: String},
     shoppingCentreAddress: {type: String},
     ABN: {type: String, required: true, minLength: 11, maxLength: 11},
-    phone: {type: String, minLength: 10, maxLength: 10},
+    phone: {type: String, maxLength: 10},
     time: {type: Date},
     itemsPurchased: [{
       itemName: {type: String, maxLength: 100},
