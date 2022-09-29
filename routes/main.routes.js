@@ -16,6 +16,8 @@ router.post('/test', mainController.addTest);
 
 router.get('/receipts', receiptController.getReceipts);
 
+router.post('/newReceipt', receiptController.createReceipt);
+
 router.get('/stats', userController.getStatistics);
 
 
