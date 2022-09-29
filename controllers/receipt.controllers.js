@@ -13,6 +13,7 @@ const getReceipts = (req, res) => {
 
 const createReceipt = (req, res) => {
 
+  console.log(req.body);
   var receipt = new Receipt({
     userID: req.user.id,
     shopName: req.body.shop,
@@ -24,8 +25,20 @@ const createReceipt = (req, res) => {
     itemsPurchased: [],
     cashClaimed: false
   });
-
+  
   console.log(receipt);
+  console.log(req.body.items);
+
+  //var items = JSON.parse(req.body.items).items;
+  console.log("ITEMS");
+  for(const item in JSON.parse(req.body.items).items) {
+    console.log(item);
+    receipt.itemsPurchased.push({
+      itemName: item.name,
+      price: item.price,
+      quanity: item.quantity
+    });
+  }
 
   /*itemsPurchased: [{
     itemName: {type: String, maxLength: 100},
