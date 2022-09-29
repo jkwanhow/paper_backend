@@ -1,4 +1,5 @@
 const Receipt = require('../models/receipt');
+const Item = require('../models/receipt');
 const mongoose = require('mongoose');
 
 const getReceipts = (req, res) => {
@@ -33,11 +34,12 @@ const createReceipt = (req, res) => {
   console.log("ITEMS");
   for(const item in JSON.parse(req.body.items).items) {
     console.log(item);
-    receipt.itemsPurchased.push({
+    var newItem = new Item({
       itemName: item.name,
       price: item.price,
       quanity: item.quantity
-    });
+    })
+    receipt.itemsPurchased.push(newItem);
   }
 
   /*itemsPurchased: [{
