@@ -11,7 +11,11 @@ const ReceiptSchema = new Schema(
     ABN: {type: String, required: true, minLength: 11, maxLength: 11},
     phone: {type: String, maxLength: 10},
     time: {type: Date},
-    itemsPurchased: [ItemSchema],
+    itemsPurchased: [{type: new Schema({
+      itemName: {type: String, required: true, maxLength: 100},
+      price: {type: Number, required: true,},
+      quantity: {type: Number, required: true,}
+    })}],
     cashClaimed: {type: Boolean}
   },
   {
@@ -21,7 +25,7 @@ const ReceiptSchema = new Schema(
 );
 
 module.exports = mongoose.model('Receipt', ReceiptSchema);
-
+/*
 const ItemSchema = new Schema({
   itemName: {type: String, required: true, maxLength: 100},
   price: {type: Number, required: true,},
@@ -29,3 +33,4 @@ const ItemSchema = new Schema({
 })
 
 module.exports = mongoose.model('Item', ItemSchema);
+*/
