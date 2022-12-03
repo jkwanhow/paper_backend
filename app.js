@@ -1,6 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
-
+const cors = require("cors")
 const session = require('express-session');
 const passport = require('passport');
 require('dotenv').config();
@@ -25,6 +25,7 @@ app.use(session({
     //set secure true once https is set up!
 }));
 
+app.use(cors({ origin: "http://localhost:3000", optionsSuccessStatus: 200, credentials: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 

@@ -88,7 +88,8 @@ const validateLogin = passport.authenticate('local', {
     successRedirect: '/',
     failureRedirect: '/',
     failureFlash: false,
-});
+}
+)
 
 module.exports = {
     mainTest,
