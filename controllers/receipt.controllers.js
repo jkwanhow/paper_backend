@@ -4,9 +4,10 @@ const mongoose = require('mongoose');
 const {pre_parse} = require('../scripts/scripts');
 
 const getReceipts = (req, res) => {
+  console.log(req.user.id)
   //var filter = {};
   //if (req.query._id) filter['_id'] = req.query._id;
-  Receipt.find( {_id: req.user.id}, (error, items) => {
+  Receipt.find( {userID: req.user.id}, (error, items) => {
       if(error) console.log(error);
       res.send(items);
   });

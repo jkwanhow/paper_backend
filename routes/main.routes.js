@@ -12,11 +12,11 @@ router.get('/', mainController.mainTest);
 
 router.get('/test', checkAuthenticated, mainController.modelTest);
 
-router.post('/test', mainController.addTest);
+router.post('/test',checkAuthenticated, mainController.addTest);
 
-router.get('/receipts', receiptController.getReceipts);
+router.get('/receipts', checkAuthenticated, receiptController.getReceipts);
 
-router.post('/newReceipt', receiptController.createReceipt);
+router.post('/receipts', checkAuthenticated, receiptController.createReceipt);
 
 router.get('/stats', userController.getStatistics);
 
